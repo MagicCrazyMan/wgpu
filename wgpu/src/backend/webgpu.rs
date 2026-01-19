@@ -51,6 +51,17 @@ macro_rules! impl_send_sync {
     };
 }
 
+/// Implements an `inner()` method that returns a reference to the inner WebGPU handle.
+macro_rules! impl_inner {
+    ($name:ty, $inner:ty) => {
+        impl $name {
+            pub fn inner(&self) -> &$inner {
+                &self.inner
+            }
+        }
+    };
+}
+
 #[derive(Clone)]
 pub struct ContextWebGpu {
     /// `None` if browser does not advertise support for WebGPU.
@@ -1531,6 +1542,26 @@ pub struct WebBufferMappedRange {
     /// Unique identifier for this BufferMappedRange.
     ident: crate::cmp::Identifier,
 }
+
+impl_inner!(WebAdapter, webgpu_sys::GpuAdapter);
+impl_inner!(WebDevice, webgpu_sys::GpuDevice);
+impl_inner!(WebQueue, webgpu_sys::GpuQueue);
+impl_inner!(WebBindGroupLayout, webgpu_sys::GpuBindGroupLayout);
+impl_inner!(WebBindGroup, webgpu_sys::GpuBindGroup);
+impl_inner!(WebTextureView, webgpu_sys::GpuTextureView);
+impl_inner!(WebSampler, webgpu_sys::GpuSampler);
+impl_inner!(WebBuffer, webgpu_sys::GpuBuffer);
+impl_inner!(WebTexture, webgpu_sys::GpuTexture);
+impl_inner!(WebQuerySet, webgpu_sys::GpuQuerySet);
+impl_inner!(WebPipelineLayout, webgpu_sys::GpuPipelineLayout);
+impl_inner!(WebRenderPipeline, webgpu_sys::GpuRenderPipeline);
+impl_inner!(WebComputePipeline, webgpu_sys::GpuComputePipeline);
+impl_inner!(WebCommandEncoder, webgpu_sys::GpuCommandEncoder);
+impl_inner!(WebComputePassEncoder, webgpu_sys::GpuComputePassEncoder);
+impl_inner!(WebRenderPassEncoder, webgpu_sys::GpuRenderPassEncoder);
+impl_inner!(WebCommandBuffer, webgpu_sys::GpuCommandBuffer);
+impl_inner!(WebRenderBundleEncoder, webgpu_sys::GpuRenderBundleEncoder);
+impl_inner!(WebRenderBundle, webgpu_sys::GpuRenderBundle);
 
 impl_send_sync!(ContextWebGpu);
 impl_send_sync!(WebAdapter);
