@@ -81,6 +81,12 @@ impl Tlas {
         self.inner.as_custom()
     }
 
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of Tlas
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebTlas {
+        self.inner.as_webgpu()
+    }
+
     /// Get a reference to all instances.
     pub fn get(&self) -> &[Option<TlasInstance>] {
         &self.instances

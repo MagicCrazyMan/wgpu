@@ -31,6 +31,12 @@ impl ShaderModule {
     pub fn as_custom<T: custom::ShaderModuleInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of ShaderModule
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebShaderModule {
+        self.inner.as_webgpu()
+    }
 }
 
 /// Compilation information for a shader module.
