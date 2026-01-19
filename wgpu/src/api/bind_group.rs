@@ -23,6 +23,12 @@ impl BindGroup {
     pub fn as_custom<T: custom::BindGroupInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of BindGroup
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebBindGroup {
+        self.inner.as_webgpu()
+    }
 }
 
 /// Resource to be bound by a [`BindGroup`] for use with a pipeline.

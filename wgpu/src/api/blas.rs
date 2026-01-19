@@ -240,6 +240,12 @@ impl Blas {
     pub fn as_custom<T: crate::custom::BlasInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of Blas
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebBlas {
+        self.inner.as_webgpu()
+    }
 }
 
 /// Context version of [BlasTriangleGeometry].

@@ -26,6 +26,12 @@ impl CommandBuffer {
         self.buffer.as_custom()
     }
 
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of CommandBuffer
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebCommandBuffer {
+        self.buffer.as_webgpu()
+    }
+
     // Expose map_buffer_on_submit/on_submitted_work_done on CommandBuffer as well,
     // so callers can schedule after finishing encoding.
     impl_deferred_command_buffer_actions!();
