@@ -35,13 +35,10 @@ impl Queue {
         }
     }
 
-    /// Returns the underlying [`webgpu::GpuQueue`] handle if this `Queue`
-    /// is on the WebGPU backend, otherwise `None`.
-    ///
-    /// [`webgpu::GpuQueue`]: crate::webgpu::GpuQueue
     #[cfg(webgpu)]
-    pub fn as_webgpu(&self) -> Option<&webgpu::GpuQueue> {
-        self.inner.as_webgpu_opt().map(|wq| &wq.inner)
+    /// Returns webgpu implementation of Queue
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebQueue {
+        self.inner.as_webgpu()
     }
 }
 
@@ -80,6 +77,12 @@ impl QueueWriteBufferView {
     /// Returns custom implementation of QueueWriteBufferView (if custom backend and is internally T)
     pub fn as_custom<T: custom::QueueWriteBufferInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
+    }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of QueueWriteBufferView
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebQueueWriteBuffer {
+        self.inner.as_webgpu()
     }
 }
 

@@ -90,6 +90,12 @@ impl TextureView {
     pub fn as_custom<T: custom::TextureViewInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of TextureView
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebTextureView {
+        self.inner.as_webgpu()
+    }
 }
 
 /// Describes a [`TextureView`].

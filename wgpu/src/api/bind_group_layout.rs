@@ -26,6 +26,12 @@ impl BindGroupLayout {
     pub fn as_custom<T: custom::BindGroupLayoutInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of BindGroupLayout
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebBindGroupLayout {
+        self.inner.as_webgpu()
+    }
 }
 
 /// Describes a [`BindGroupLayout`].

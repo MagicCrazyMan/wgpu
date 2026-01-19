@@ -34,6 +34,12 @@ impl RenderPipeline {
     pub fn as_custom<T: custom::RenderPipelineInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of RenderPipeline
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebRenderPipeline {
+        self.inner.as_webgpu()
+    }
 }
 
 /// Specifies an interpretation of the bytes of a vertex buffer as vertex attributes.

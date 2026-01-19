@@ -55,6 +55,12 @@ impl QuerySet {
     pub fn count(&self) -> u32 {
         self.count
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of QuerySet
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebQuerySet {
+        self.inner.as_webgpu()
+    }
 }
 
 /// Describes a [`QuerySet`].
