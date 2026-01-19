@@ -149,6 +149,12 @@ impl Adapter {
         }
     }
 
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of Adapter
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebAdapter {
+        self.inner.as_webgpu()
+    }
+
     /// Returns whether this adapter may present to the passed surface.
     pub fn is_surface_supported(&self, surface: &Surface<'_>) -> bool {
         self.inner.is_surface_supported(&surface.inner)

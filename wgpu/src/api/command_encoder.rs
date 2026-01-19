@@ -287,6 +287,12 @@ impl CommandEncoder {
     pub fn as_custom<T: custom::CommandEncoderInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of CommandEncoder
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebCommandEncoder {
+        self.inner.as_webgpu()
+    }
 }
 
 /// [`Features::TIMESTAMP_QUERY_INSIDE_ENCODERS`] must be enabled on the device in order to call these functions.

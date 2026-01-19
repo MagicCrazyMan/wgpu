@@ -24,6 +24,12 @@ impl RenderBundle {
     pub fn as_custom<T: custom::RenderBundleInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of RenderBundle
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebRenderBundle {
+        self.inner.as_webgpu()
+    }
 }
 
 /// Describes a [`RenderBundle`].

@@ -33,6 +33,12 @@ impl Queue {
             inner: dispatch::DispatchQueue::custom(queue),
         }
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of Queue
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebQueue {
+        self.inner.as_webgpu()
+    }
 }
 
 /// Identifier for a particular call to [`Queue::submit`]. Can be used
@@ -72,6 +78,12 @@ impl QueueWriteBufferView {
     /// Returns custom implementation of QueueWriteBufferView (if custom backend and is internally T)
     pub fn as_custom<T: custom::QueueWriteBufferInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
+    }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of QueueWriteBufferView
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebQueueWriteBuffer {
+        self.inner.as_webgpu()
     }
 }
 

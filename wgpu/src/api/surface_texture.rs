@@ -43,6 +43,12 @@ impl SurfaceTexture {
     pub fn as_custom<T: crate::custom::SurfaceOutputDetailInterface>(&self) -> Option<&T> {
         self.detail.as_custom()
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of SurfaceTexture
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebSurfaceOutputDetail {
+        self.detail.as_webgpu()
+    }
 }
 
 impl Drop for SurfaceTexture {

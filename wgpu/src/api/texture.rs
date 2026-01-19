@@ -69,6 +69,12 @@ impl Texture {
         self.inner.as_custom()
     }
 
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of Texture
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebTexture {
+        self.inner.as_webgpu()
+    }
+
     #[cfg(custom)]
     /// Creates a texture from already created custom implementation with the given description
     pub fn from_custom<T: custom::TextureInterface>(

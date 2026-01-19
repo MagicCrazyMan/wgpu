@@ -33,6 +33,12 @@ impl ComputePipeline {
     pub fn as_custom<T: custom::ComputePipelineInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of ComputePipeline
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebComputePipeline {
+        self.inner.as_webgpu()
+    }
 }
 
 /// Describes a compute pipeline.

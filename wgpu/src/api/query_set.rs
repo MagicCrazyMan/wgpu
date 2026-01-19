@@ -21,6 +21,12 @@ impl QuerySet {
     pub fn as_custom<T: custom::QuerySetInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of QuerySet
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebQuerySet {
+        self.inner.as_webgpu()
+    }
 }
 
 /// Describes a [`QuerySet`].

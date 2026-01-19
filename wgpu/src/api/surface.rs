@@ -204,6 +204,12 @@ impl Surface<'_> {
     pub fn as_custom<T: custom::SurfaceInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of Surface
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebSurface {
+        self.inner.as_webgpu()
+    }
 }
 
 // This custom implementation is required because [`Surface::_surface`] doesn't

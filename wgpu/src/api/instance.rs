@@ -427,4 +427,10 @@ impl Instance {
     pub fn as_custom<T: custom::InstanceInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of Instance
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::ContextWebGpu {
+        self.inner.as_webgpu()
+    }
 }
