@@ -292,6 +292,13 @@ pub struct Adapter {
     shared: Arc<AdapterShared>,
 }
 
+impl Adapter {
+    /// Returns a reference to the adapter context.
+    pub fn adapter_context(&self) -> &AdapterContext {
+        &self.shared.context
+    }
+}
+
 pub struct Device {
     shared: Arc<AdapterShared>,
     main_vao: glow::VertexArray,
