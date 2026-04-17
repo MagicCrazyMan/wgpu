@@ -111,7 +111,7 @@ pub extern crate wgpu_types as wgt;
 //
 
 mod api;
-mod backend;
+pub mod backend;
 mod cmp;
 mod dispatch;
 mod macros;
