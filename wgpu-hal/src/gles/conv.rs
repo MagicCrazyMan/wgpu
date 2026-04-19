@@ -1,5 +1,5 @@
 impl super::AdapterShared {
-    pub(super) fn describe_texture_format(
+    pub fn describe_texture_format(
         &self,
         texture_format: wgt::TextureFormat,
     ) -> super::TextureFormatDesc {

@@ -270,22 +270,22 @@ pub struct TextureFormatDesc {
     pub data_type: u32,
 }
 
-struct AdapterShared {
-    context: AdapterContext,
+pub struct AdapterShared {
+    pub context: AdapterContext,
     private_caps: PrivateCapabilities,
-    features: wgt::Features,
-    limits: wgt::Limits,
+    pub features: wgt::Features,
+    pub limits: wgt::Limits,
     workarounds: Workarounds,
-    options: wgt::GlBackendOptions,
-    shading_language_version: naga::back::glsl::Version,
-    next_shader_id: AtomicU32,
+    pub options: wgt::GlBackendOptions,
+    pub shading_language_version: naga::back::glsl::Version,
+    pub next_shader_id: AtomicU32,
     program_cache: Mutex<ProgramCache>,
-    es: bool,
+    pub es: bool,
 
     /// Result of `gl.get_parameter_i32(glow::MAX_SAMPLES)`.
     /// Cached here so it doesn't need to be queried every time texture format capabilities are requested.
     /// (this has been shown to be a significant enough overhead)
-    max_msaa_samples: i32,
+    pub max_msaa_samples: i32,
 }
 
 pub struct Adapter {
@@ -294,8 +294,8 @@ pub struct Adapter {
 
 impl Adapter {
     /// Returns a reference to the adapter context.
-    pub fn adapter_context(&self) -> &AdapterContext {
-        &self.shared.context
+    pub fn adapter_shared(&self) -> &AdapterShared {
+        &self.shared
     }
 }
 
