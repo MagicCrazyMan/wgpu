@@ -102,6 +102,11 @@ impl Instance {
         let context_options = js_sys::Object::new();
         js_sys::Reflect::set(&context_options, &"antialias".into(), &JsValue::FALSE)
             .expect("Cannot create context options");
+
+        #[cfg(feature = "webgl-preserve-drawing-buffer")]
+        js_sys::Reflect::set(&context_options, &"preserveDrawingBuffer".into(), &JsValue::TRUE)
+            .expect("Cannot set preserveDrawingBuffer option");
+
         context_options
     }
 }

@@ -84,6 +84,8 @@ vulkan-portability = ["wgpu-core?/vulkan-portability"]
 
 ## Enables the GLES backend on WebAssembly only.
 webgl = ["web", "wgpu-core/webgl", "dep:wgpu-hal", "dep:smallvec"]
+## WebGL preserveDrawingBuffer
+webgl-preserve-drawing-buffer = ["wgpu-hal/webgl-preserve-drawing-buffer"]
 
 ## Enables the noop backend for testing.
 ##

@@ -164,6 +164,11 @@ dx12 = [
     "windows/Win32_UI_WindowsAndMessaging",
 ]
 
+###################################
+### WebGL preserveDrawingBuffer ###
+###################################
+webgl-preserve-drawing-buffer = []
+
 ###########################
 ### Misc Other Features ###
 ###########################
