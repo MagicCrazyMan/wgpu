@@ -426,13 +426,6 @@ impl Device {
         }
     }
 
-    /// Returns the underlying [`webgpu::GpuDevice`] handle if this `Device`
-    /// is on the WebGPU backend, otherwise `None`.
-    #[cfg(webgpu)]
-    pub fn as_webgpu(&self) -> Option<&webgpu::GpuDevice> {
-        self.inner.as_webgpu_opt().map(|wd| &wd.inner)
-    }
-
     /// Creates a new [`ExternalTexture`].
     #[must_use]
     pub fn create_external_texture(
