@@ -76,15 +76,6 @@ impl TextureView {
         unsafe { view.context.texture_view_as_hal::<A>(view) }
     }
 
-    /// Returns the underlying [`webgpu::GpuTextureView`] handle if this view
-    /// is on the WebGPU backend, otherwise `None`.
-    ///
-    /// [`webgpu::GpuTextureView`]: crate::webgpu::GpuTextureView
-    #[cfg(webgpu)]
-    pub fn as_webgpu(&self) -> Option<&webgpu::GpuTextureView> {
-        self.inner.as_webgpu_opt().map(|wv| &wv.inner)
-    }
-
     #[cfg(custom)]
     /// Returns custom implementation of TextureView (if custom backend and is internally T)
     pub fn as_custom<T: custom::TextureViewInterface>(&self) -> Option<&T> {
