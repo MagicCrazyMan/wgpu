@@ -387,9 +387,9 @@ impl Drop for Queue {
 
 #[derive(Clone, Debug)]
 pub struct Buffer {
-    raw: Option<glow::Buffer>,
-    target: BindTarget,
-    size: wgt::BufferAddress,
+    pub raw: Option<glow::Buffer>,
+    pub target: BindTarget,
+    pub size: wgt::BufferAddress,
     /// Flags to use within calls to [`Device::map_buffer`](crate::Device::map_buffer).
     map_flags: u32,
     /// Buffer mapping state.
