@@ -2784,7 +2784,7 @@ impl super::Adapter {
                 //Note: we could technically disable this when we are compiling separate entry points,
                 // and we know exactly that the primitive topology is not `PointList`.
                 // But this requires cloning the `spv::Options` struct, which has heap allocations.
-                true, // could check `super::Workarounds::SEPARATE_ENTRY_POINTS`
+                false, // could check `super::Workarounds::SEPARATE_ENTRY_POINTS`
             );
             flags.set(
                 spv::WriterFlags::PRINT_ON_RAY_QUERY_INITIALIZATION_FAIL
