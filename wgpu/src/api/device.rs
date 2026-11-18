@@ -49,6 +49,12 @@ impl Device {
         }
     }
 
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of Device
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebDevice {
+        self.inner.as_webgpu()
+    }
+
     /// Constructs a stub device for testing using [`Backend::Noop`].
     ///
     /// This is a convenience function which avoids the configuration, `async`, and fallibility
@@ -418,13 +424,6 @@ impl Device {
                 ..desc.clone()
             },
         }
-    }
-
-    /// Returns the underlying [`webgpu::GpuDevice`] handle if this `Device`
-    /// is on the WebGPU backend, otherwise `None`.
-    #[cfg(webgpu)]
-    pub fn as_webgpu(&self) -> Option<&webgpu::GpuDevice> {
-        self.inner.as_webgpu_opt().map(|wd| &wd.inner)
     }
 
     /// Creates a new [`ExternalTexture`].

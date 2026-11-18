@@ -64,23 +64,16 @@ impl Texture {
         unsafe { texture.context.texture_as_hal::<A>(texture) }
     }
 
-    /// Returns the underlying [`webgpu::GpuTexture`] handle if this `Texture`
-    /// is on the WebGPU backend.
-    ///
-    /// Use this on the WebGPU backend instead of [`Self::as_hal`].
-    ///
-    /// The returned handle is the same JS object wgpu uses internally; it can
-    /// be passed to other WebGPU-aware JS APIs, used for identity comparison,
-    /// or fed back into [`Device::create_texture_from_webgpu_handle`].
-    #[cfg(webgpu)]
-    pub fn as_webgpu(&self) -> Option<&webgpu::GpuTexture> {
-        self.inner.as_webgpu_opt().map(|wt| &wt.inner)
-    }
-
     #[cfg(custom)]
     /// Returns custom implementation of Texture (if custom backend and is internally T)
     pub fn as_custom<T: custom::TextureInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
+    }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of Texture
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebTexture {
+        self.inner.as_webgpu()
     }
 
     #[cfg(custom)]

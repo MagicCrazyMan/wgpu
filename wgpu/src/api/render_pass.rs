@@ -410,6 +410,12 @@ impl RenderPass<'_> {
     pub fn as_custom<T: custom::RenderPassInterface>(&self) -> Option<&T> {
         self.inner.as_custom()
     }
+
+    #[cfg(webgpu)]
+    /// Returns webgpu implementation of RenderPass
+    pub fn as_webgpu(&self) -> &crate::backend::webgpu::WebRenderPassEncoder {
+        self.inner.as_webgpu()
+    }
 }
 
 /// [`Features::MULTI_DRAW_INDIRECT_COUNT`] must be enabled on the device in order to call these functions.
