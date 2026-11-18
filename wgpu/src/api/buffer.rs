@@ -891,7 +891,7 @@ impl error::Error for BufferAsyncError {}
 /// [`getMappedRange()`](https://gpuweb.github.io/gpuweb/#dom-gpubuffer-getmappedrange)
 /// in the WebGPU spec.
 #[derive(Clone, Debug)]
-pub struct MapRangeError(pub(crate) String);
+pub struct MapRangeError(pub String);
 static_assertions::assert_impl_all!(MapRangeError: Send, Sync);
 
 impl fmt::Display for MapRangeError {
